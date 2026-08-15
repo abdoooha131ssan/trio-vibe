@@ -25,8 +25,7 @@ export function Media({ name, alt, sizes, className, priority = false }: Props) 
       alt={alt}
       loading={priority ? "eager" : "lazy"}
       decoding={priority ? "sync" : "async"}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      {...(priority ? ({ fetchpriority: "high" } as any) : {})}
+      {...(priority ? { fetchPriority: "high" as const } : {})}
       className={cn("block h-full w-full object-cover", className)}
     />
   );

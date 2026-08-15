@@ -15,7 +15,7 @@ import {
 
 const spanClass: Record<Project["span"], string> = {
   wide: "sm:col-span-2",
-  tall: "sm:row-span-2",
+  tall: "",
   regular: "",
 };
 

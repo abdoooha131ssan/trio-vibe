@@ -1,11 +1,39 @@
 import { CREATIVE_WALL } from "@/data/site";
 import { Media } from "./Media";
-import { Reveal } from "./Reveal";
 import { Section, SectionHead } from "./Primitives";
+
+const half = Math.ceil(CREATIVE_WALL.length / 2);
+const ROW_A = CREATIVE_WALL.slice(0, half);
+const ROW_B = CREATIVE_WALL.slice(half);
+
+function Row({ items, reverse }: { items: typeof CREATIVE_WALL; reverse?: boolean }) {
+  return (
+    <div className="group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+      <div
+        className="marquee-track gap-4 group-hover:[animation-play-state:paused]"
+        style={reverse ? { animationDirection: "reverse" } : undefined}
+      >
+        {[...items, ...items].map((key, i) => (
+          <figure
+            key={`${key}-${i}`}
+            className="w-[220px] shrink-0 overflow-hidden rounded-xl border border-border bg-card sm:w-[260px]"
+          >
+            <Media
+              name={key}
+              alt="Social media design produced by Trio Vibe"
+              sizes="260px"
+              className="aspect-square transition-transform duration-700 ease-out hover:scale-[1.05]"
+            />
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function CreativeWall() {
   return (
-    <Section id="creative" label="Creative wall">
+    <Section id="creative" label="Creative wall" className="overflow-hidden">
       <SectionHead
         index="07"
         eyebrow="Creative wall"
@@ -14,21 +42,9 @@ export function CreativeWall() {
         intro="A cross-section of social design produced for clinics, agencies and retail brands."
       />
 
-      <div className="mt-14 columns-2 gap-4 md:columns-3 lg:columns-4">
-        {CREATIVE_WALL.map((key, i) => (
-          <Reveal
-            key={key}
-            delay={(i % 4) * 60}
-            className="mb-4 break-inside-avoid overflow-hidden rounded-xl border border-border bg-card"
-          >
-            <Media
-              name={key}
-              alt="Social media design produced by Trio Vibe"
-              sizes="(max-width: 768px) 46vw, 280px"
-              className="transition-transform duration-700 ease-out hover:scale-[1.04]"
-            />
-          </Reveal>
-        ))}
+      <div className="mt-14 space-y-4">
+        <Row items={ROW_A} />
+        <Row items={ROW_B} reverse />
       </div>
     </Section>
   );

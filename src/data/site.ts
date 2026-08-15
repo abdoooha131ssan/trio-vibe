@@ -10,10 +10,11 @@ export const CONTACT = {
 } as const;
 
 export const NAV = [
+  { label: "Results", href: "#results" },
   { label: "Work", href: "#work" },
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
+  { label: "Trio", href: "#trio" },
   { label: "Contact", href: "#contact" },
 ] as const;
 

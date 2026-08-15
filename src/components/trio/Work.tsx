@@ -108,10 +108,7 @@ export function Work() {
       </div>
 
       <Dialog open={Boolean(active)} onOpenChange={(o) => !o && setActive(null)}>
-        <DialogContent
-          showCloseButton={false}
-          className="max-h-[88vh] max-w-3xl overflow-y-auto border-border bg-card p-0"
-        >
+        <DialogContent className="max-h-[88vh] max-w-3xl overflow-y-auto border-border bg-card p-0">
           {active ? (
             <article>
               <div className="relative">
@@ -120,14 +117,6 @@ export function Work() {
                   alt={active.alt}
                   sizes="(max-width: 768px) 96vw, 768px"
                 />
-                <button
-                  type="button"
-                  onClick={() => setActive(null)}
-                  aria-label="Close case study"
-                  className="absolute right-4 top-4 inline-flex size-9 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur"
-                >
-                  <X className="size-4" />
-                </button>
               </div>
               <div className="p-7 sm:p-9">
                 <DialogHeader className="space-y-3 text-left">

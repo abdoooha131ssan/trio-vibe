@@ -13,7 +13,7 @@ export function About() {
   return (
     <Section id="about">
       <SectionHead
-        index="04"
+        index="06"
         eyebrow="Positioning"
         title="We don't just create. We"
         accent="analyze, build, and grow."

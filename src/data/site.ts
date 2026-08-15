@@ -10,10 +10,11 @@ export const CONTACT = {
 } as const;
 
 export const NAV = [
+  { label: "Results", href: "#results" },
   { label: "Work", href: "#work" },
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
+  { label: "Trio", href: "#trio" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -485,3 +486,59 @@ export const CREATIVE_WALL: MediaKey[] = [
 ];
 
 export { media };
+/** Distribution channels the growth team buys and produces for. */
+export const CHANNELS = [
+  {
+    name: "Meta Ads",
+    detail: "Facebook & Instagram campaign structures, creative testing and budget scaling.",
+    tag: "Paid",
+  },
+  {
+    name: "Instagram",
+    detail: "Feed systems, reels and community rhythm designed as one recognisable set.",
+    tag: "Organic",
+  },
+  {
+    name: "TikTok",
+    detail: "Short-form built for the hook, cut against the retention curve.",
+    tag: "Organic + Paid",
+  },
+  {
+    name: "Snapchat",
+    detail: "Gulf-market reach campaigns with creative shaped for the platform's pace.",
+    tag: "Paid",
+  },
+  {
+    name: "Google & YouTube",
+    detail: "Intent capture through search and video placements tied to tracked outcomes.",
+    tag: "Paid",
+  },
+  {
+    name: "WhatsApp",
+    detail: "Conversation-led funnels where the booking actually happens.",
+    tag: "Conversion",
+  },
+] as const;
+
+/** The production and measurement stack behind the work. */
+export const TOOL_GROUPS = [
+  {
+    group: "Design",
+    items: ["Adobe Photoshop", "Adobe Illustrator", "Adobe After Effects", "Figma", "Canva Pro"],
+  },
+  {
+    group: "Video",
+    items: ["Adobe Premiere Pro", "CapCut Pro", "DaVinci Resolve"],
+  },
+  {
+    group: "Growth",
+    items: ["Meta Ads Manager", "TikTok Ads Manager", "Snapchat Ads", "Google Ads"],
+  },
+  {
+    group: "Measurement",
+    items: ["GA4", "Meta Pixel", "Conversions API", "Looker Studio"],
+  },
+] as const;
+
+/** Disciplines used by the capabilities tabs. */
+export const DISCIPLINES = ["Brand", "Content", "Growth"] as const;

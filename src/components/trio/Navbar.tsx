@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { CONTACT, NAV } from "@/data/site";
-import { logoUrl } from "@/data/media";
+import { logoUrl } from "@/lib/logo";
 import { cn } from "@/lib/utils";
 
 const IDS = NAV.map((n) => n.href.slice(1));
@@ -96,7 +96,7 @@ export function Navbar() {
             href={CONTACT.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-primary-foreground transition-all duration-300 hover:shadow-glow sm:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-primary-foreground transition-all duration-300 hover:sha[...]"
           >
             <MessageCircle className="size-3.5" aria-hidden="true" />
             Start a project

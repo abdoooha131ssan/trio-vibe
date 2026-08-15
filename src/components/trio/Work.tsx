@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { PROJECTS, WORK_CATEGORIES, type Project } from "@/data/site";
 import { Media } from "./Media";
 import { Reveal } from "./Reveal";

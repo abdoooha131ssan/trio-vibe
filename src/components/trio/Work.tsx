@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { PROJECTS, WORK_CATEGORIES, type Project } from "@/data/site";
 import { Media } from "./Media";
-import { Reveal } from "./Reveal";
 import { Section, SectionHead } from "./Primitives";
 import { cn } from "@/lib/utils";
 import {
@@ -57,12 +56,19 @@ export function Work() {
         ))}
       </div>
 
-      <div className="mt-8 grid auto-rows-[minmax(0,auto)] gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div
+        key={filter}
+        className="mt-8 grid auto-rows-[minmax(0,auto)] gap-5 sm:grid-cols-2 lg:grid-cols-3"
+      >
         {items.map((p, i) => {
           const clickable = Boolean(p.caseStudy);
           const Wrapper = clickable ? "button" : "div";
           return (
-            <Reveal key={p.slug} delay={(i % 6) * 50} className={cn("group", spanClass[p.span])}>
+            <div
+              key={p.slug}
+              className={cn("enter-up group", spanClass[p.span])}
+              style={{ animationDelay: `${(i % 6) * 70}ms` }}
+            >
               <Wrapper
                 {...(clickable
                   ? { type: "button" as const, onClick: () => setActive(p) }
@@ -102,7 +108,7 @@ export function Work() {
                   </div>
                 </div>
               </Wrapper>
-            </Reveal>
+            </div>
           );
         })}
       </div>

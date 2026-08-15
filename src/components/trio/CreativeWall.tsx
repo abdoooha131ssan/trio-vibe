@@ -35,7 +35,7 @@ export function CreativeWall() {
   return (
     <Section id="creative" label="Creative wall" className="overflow-hidden">
       <SectionHead
-        index="07"
+        index="03"
         eyebrow="Creative wall"
         title="Feed systems, built as"
         accent="a set."

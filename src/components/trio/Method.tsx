@@ -29,7 +29,7 @@ export function Method() {
   return (
     <Section id="process">
       <SectionHead
-        index="08"
+        index="07"
         eyebrow="How we work"
         title="Analysis first."
         accent="Execution second."

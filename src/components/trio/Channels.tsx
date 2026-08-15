@@ -6,7 +6,7 @@ export function Channels() {
   return (
     <Section id="channels">
       <SectionHead
-        index="06"
+        index="05"
         eyebrow="Distribution"
         title="Where the work"
         accent="goes live."

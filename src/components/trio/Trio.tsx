@@ -12,7 +12,7 @@ export function Trio() {
         style={{ background: "var(--gradient-halo)" }}
       />
       <SectionHead
-        index="09"
+        index="08"
         eyebrow="The Trio"
         title="Three specialists."
         accent="One direction."

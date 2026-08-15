@@ -30,7 +30,7 @@ export function Work() {
   return (
     <Section id="work">
       <SectionHead
-        index="06"
+        index="02"
         eyebrow="Selected work"
         title="The"
         accent="portfolio."

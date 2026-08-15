@@ -8,7 +8,7 @@ export function Ecosystem() {
   return (
     <Section id="ecosystem" className="relative overflow-hidden">
       <SectionHead
-        index="10"
+        index="09"
         eyebrow="Ecosystem"
         title="The stack behind"
         accent="the output."

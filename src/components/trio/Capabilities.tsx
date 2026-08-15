@@ -17,7 +17,7 @@ export function Capabilities() {
   return (
     <Section id="services">
       <SectionHead
-        index="05"
+        index="04"
         eyebrow="Capabilities"
         title="What we"
         accent="do."

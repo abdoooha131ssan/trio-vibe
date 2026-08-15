@@ -18,7 +18,7 @@ export function Results() {
       />
 
       <SectionHead
-        index="02"
+        index="01"
         eyebrow="Performance proof"
         title="Numbers we can"
         accent="stand behind."

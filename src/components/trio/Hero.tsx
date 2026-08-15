@@ -32,7 +32,7 @@ export function Hero() {
         className="hairline-grid pointer-events-none absolute inset-0 -z-10 opacity-40 [mask-image:radial-gradient(70%_60%_at_50%_35%,black,transparent)]"
       />
 
-      <div className="mx-auto w-full max-w-[1240px] px-5 pb-24 pt-16 sm:px-8 md:pt-24 lg:px-12 lg:pb-32">
+      <div className="mx-auto w-full max-w-[1240px] px-5 pb-16 pt-16 sm:px-8 md:pt-24 lg:px-12 lg:pb-20">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <p className="eyebrow enter-up flex items-center gap-3">
@@ -133,7 +133,7 @@ export function Hero() {
 
         <a
           href="#results"
-          className="mt-20 inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground transition-colors hover:text-orange"
+          className="mt-14 inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground transition-colors hover:text-orange"
         >
           <span className="grid size-9 place-items-center rounded-full border border-input">
             <ArrowDown className="size-3.5 animate-bounce" aria-hidden="true" />

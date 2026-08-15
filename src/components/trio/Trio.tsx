@@ -21,8 +21,8 @@ export function Trio() {
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {FOUNDERS.map((f, i) => (
-          <Reveal key={f.name} delay={i * 90} className="group">
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
+          <Reveal key={f.name} delay={i * 90} className="group [perspective:1200px]">
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-card transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:[transform:rotateX(4deg)] group-hover:shadow-lift">
               <Media
                 name={f.image}
                 alt={f.alt}
@@ -38,7 +38,10 @@ export function Trio() {
                 }}
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/70 to-transparent p-6 pt-16">
-                <h3 className="text-2xl text-foreground">{f.name}</h3>
+                <p className="font-mono text-[10px] tracking-[0.24em] text-muted-foreground">
+                  0{i + 1}
+                </p>
+                <h3 className="mt-2 text-2xl text-foreground">{f.name}</h3>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-orange">
                   {f.role}
                 </p>

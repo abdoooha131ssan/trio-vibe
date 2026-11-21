@@ -5,20 +5,9 @@
 // Default fallback is https://trio-vibe.lovable.app
 
 export function getLovableOrigin(): string {
-  // Vite exposes env vars via import.meta.env; this code runs both on server and client.
-  // We prefer the VITE_* variable when available, otherwise fall back to process.env on server.
-  // Finally, use a safe default fallback.
-  let fromVite: string | undefined = undefined;
-  try {
-    // import.meta may be undefined in some runtime analysis but in Vite it exists.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    fromVite = typeof import !== "undefined" && typeof import.meta !== "undefined" ? (import.meta as any).env?.VITE_LOVABLE_ASSET_ORIGIN : undefined;
-  } catch (e) {
-    fromVite = undefined;
-  }
-  const fromProcess = typeof process !== "undefined" ? (process.env.VITE_LOVABLE_ASSET_ORIGIN || process.env.LOVABLE_ASSET_ORIGIN) : undefined;
-  const origin = (fromVite || fromProcess || "https://trio-vibe.lovable.app").replace(/\/+$/, "");
+  const origin = (
+    import.meta.env["VITE_LOVABLE_ASSET_ORIGIN"] || "https://trio-vibe.lovable.app"
+  ).replace(/\/+$/, "");
   return origin;
 }
 

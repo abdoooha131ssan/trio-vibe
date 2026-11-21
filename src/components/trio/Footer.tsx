@@ -84,7 +84,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-border">
-        <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-3 px-5 py-6 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:px-8 lg[...]
+        <div className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-between gap-3 px-5 py-6 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:px-8 lg:px-12">
           <span>© {new Date().getFullYear()} Trio Vibe</span>
           <span>You imagine. We create.</span>
         </div>

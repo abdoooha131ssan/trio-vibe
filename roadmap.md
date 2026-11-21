@@ -1,0 +1,5 @@
+- [ ] Create the public site-content and theme tables with safe read/write policies and seed current site values.
+- [ ] Load saved content, theme, and section order across the site; support live updates after publish.
+- [ ] Add a protected `/admin` sign-in and dashboard with Admin edit access and User view-only access.
+- [ ] Add content, theme, section, and media controls, including save, publish, and reset-to-original actions.
+- [ ] Show an admin-only “Edit Site” link and verify visitor, User, and Admin access paths.

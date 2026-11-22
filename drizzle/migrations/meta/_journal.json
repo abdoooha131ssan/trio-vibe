@@ -1,5 +1,20 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1795306368236,
+      "tag": "0000_create_site_cms_tables_and_roles",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795306392625,
+      "tag": "0001_secure_site_media_access",
+      "breakpoints": true
+    }
+  ]
 }

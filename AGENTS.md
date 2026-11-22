@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Use `site_content` and `site_theme` as the source of truth for editable public content and presentation; enforce writes through `user_roles`-based RLS so the website stays live while only Admins can change it.

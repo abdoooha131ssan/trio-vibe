@@ -14,13 +14,90 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      site_content: {
+        Row: {
+          key: string
+          page: string
+          type: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          page?: string
+          type: string
+          updated_at?: string
+          value: Json
+        }
+        Update: {
+          key?: string
+          page?: string
+          type?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      site_theme: {
+        Row: {
+          background_color: string
+          button_color: string
+          font: string
+          id: boolean
+          primary_color: string
+          secondary_color: string
+          text_color: string
+          updated_at: string
+        }
+        Insert: {
+          background_color: string
+          button_color: string
+          font: string
+          id?: boolean
+          primary_color: string
+          secondary_color: string
+          text_color: string
+          updated_at?: string
+        }
+        Update: {
+          background_color?: string
+          button_color?: string
+          font?: string
+          id?: boolean
+          primary_color?: string
+          secondary_color?: string
+          text_color?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_site_role: { Args: { _role: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never

@@ -12,7 +12,7 @@ export function Results() {
     stats: { value: number; decimals?: number; suffix: string; label: string; note: string }[];
     caseStudies: { slug: string; image: string; alt: string; discipline: string; title: string; summary: string; caseStudy?: { result: string; metrics?: { value: string; label: string }[] } }[];
   }>("site.results");
-  const labels = useSiteBlock<{ case: string }>("site.brand").labels;
+  const labels = useSiteBlock<{ labels: { case: string } }>("site.brand").labels;
   const s = useDragScroll<HTMLDivElement>();
 
   return (

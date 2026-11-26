@@ -1,35 +1,32 @@
-import { media, type MediaKey } from "@/data/media";
+import { useSiteBlock } from "@/lib/site-content";
+import { resolveSrcSet, resolveUrl } from "@/lib/assets";
 import { cn } from "@/lib/utils";
-import { resolveUrl, resolveSrcSet } from "@/lib/assets";
+
+type Asset = { src?: string; srcSet?: string; width?: number; height?: number };
 
 type Props = {
-  name: MediaKey;
+  name: string;
   alt: string;
   sizes: string;
   className?: string;
   priority?: boolean;
 };
 
-/**
- * Responsive CDN image. Always renders intrinsic width/height so the browser
- * reserves space and the layout never shifts.
- *
- * Uses the centralized resolver to convert /__l5e/... paths into a full origin
- * (VITE_LOVABLE_ASSET_ORIGIN or fallback https://trio-vibe.lovable.app).
- */
 export function Media({ name, alt, sizes, className, priority = false }: Props) {
-  const m = media[name];
+  const assets = useSiteBlock<Record<string, Asset>>("site.media");
+  const asset = assets[name];
+  if (!asset?.src) return null;
 
-  const src = resolveUrl(m.src);
-  const srcSet = resolveSrcSet(m.srcSet);
+  const src = resolveUrl(asset.src) ?? asset.src;
+  const srcSet = resolveSrcSet(asset.srcSet);
 
   return (
     <img
       src={src}
-      srcSet={srcSet}
+      {...(srcSet ? { srcSet } : {})}
       sizes={sizes}
-      width={m.width}
-      height={m.height}
+      width={asset.width ?? 1400}
+      height={asset.height ?? 990}
       alt={alt}
       loading={priority ? "eager" : "lazy"}
       decoding={priority ? "sync" : "async"}
@@ -38,5 +35,3 @@ export function Media({ name, alt, sizes, className, priority = false }: Props) 
     />
   );
 }
-
-export type { MediaKey };

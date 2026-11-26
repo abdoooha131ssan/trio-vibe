@@ -1,20 +1,21 @@
-import { CHANNELS } from "@/data/site";
+import { useSiteBlock } from "@/lib/site-content";
 import { Reveal } from "./Reveal";
 import { Section, SectionHead } from "./Primitives";
 
 export function Channels() {
+  const block = useSiteBlock<{ section: { index: string; eyebrow: string; title: string; accent: string; intro: string }; items: { name: string; detail: string; tag: string }[] }>("site.channels");
   return (
     <Section id="channels">
       <SectionHead
-        index="05"
-        eyebrow="Distribution"
-        title="Where the work"
-        accent="goes live."
-        intro="Creative is only half of it. These are the channels we produce for and buy on."
+        index={block.section.index}
+        eyebrow={block.section.eyebrow}
+        title={block.section.title}
+        accent={block.section.accent}
+        intro={block.section.intro}
       />
 
       <ul className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-        {CHANNELS.map((c, i) => (
+        {block.items.map((c, i) => (
           <li key={c.name}>
             <Reveal
               delay={(i % 3) * 70}

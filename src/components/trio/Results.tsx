@@ -1,5 +1,5 @@
-import { CASE_STUDIES, STATS } from "@/data/site";
 import { useDragScroll } from "@/hooks/useDragScroll";
+import { useSiteBlock } from "@/lib/site-content";
 import { Media } from "./Media";
 import { Counter } from "./Counter";
 import { Reveal } from "./Reveal";
@@ -7,10 +7,16 @@ import { Section, SectionHead } from "./Primitives";
 import { SliderControls } from "./SliderControls";
 
 export function Results() {
+  const block = useSiteBlock<{
+    section: { index: string; eyebrow: string; title: string; accent: string; intro: string; ariaLabel: string };
+    stats: { value: number; decimals?: number; suffix: string; label: string; note: string }[];
+    caseStudies: { slug: string; image: string; alt: string; discipline: string; title: string; summary: string; caseStudy?: { result: string; metrics?: { value: string; label: string }[] } }[];
+  }>("site.results");
+  const labels = useSiteBlock<{ case: string }>("site.brand").labels;
   const s = useDragScroll<HTMLDivElement>();
 
   return (
-    <Section id="results" className="relative overflow-hidden" label="Performance proof">
+    <Section id="results" className="relative overflow-hidden" label={block.section.ariaLabel}>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-10 -z-10 h-[520px] opacity-70"
@@ -18,15 +24,15 @@ export function Results() {
       />
 
       <SectionHead
-        index="01"
-        eyebrow="Performance proof"
-        title="Numbers we can"
-        accent="stand behind."
-        intro="Documented outcomes from live campaigns — swipe through the cases, not the claims."
+        index={block.section.index}
+        eyebrow={block.section.eyebrow}
+        title={block.section.title}
+        accent={block.section.accent}
+        intro={block.section.intro}
       />
 
       <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-4">
-        {STATS.map((stat, i) => (
+        {block.stats.map((stat, i) => (
           <Reveal key={stat.label} delay={i * 70} className="bg-card px-6 py-8">
             <dd className="font-display text-[clamp(2.25rem,5vw,3.5rem)] leading-none text-foreground">
               <Counter
@@ -47,9 +53,9 @@ export function Results() {
         ref={s.ref}
         {...s.dragProps}
         className="drag-x mt-14 gap-5 pb-2"
-        aria-label="Case study slider"
+        aria-label={block.section.ariaLabel}
       >
-        {CASE_STUDIES.map((p) => (
+        {block.caseStudies.map((p) => (
           <article
             key={p.slug}
             className="w-[86vw] max-w-[720px] overflow-hidden rounded-2xl border border-border bg-card sm:w-[62vw] lg:w-[560px]"
@@ -95,7 +101,7 @@ export function Results() {
         onPrev={s.prev}
         onNext={s.next}
         onDot={s.goTo}
-        label="Case"
+        label={labels.case}
       />
     </Section>
   );

@@ -1,35 +1,30 @@
 import { useState } from "react";
-import { DISCIPLINES, SERVICES } from "@/data/site";
+import { useSiteBlock } from "@/lib/site-content";
 import { Reveal } from "./Reveal";
 import { Section, SectionHead } from "./Primitives";
 import { cn } from "@/lib/utils";
 
-const BLURB: Record<(typeof DISCIPLINES)[number], string> = {
-  Brand: "Identity work that fixes how the business is understood before anything is produced.",
-  Content: "The output engine — feeds, film and copy produced as one recognisable system.",
-  Growth: "Paid distribution and strategy managed against tracked return, not reach.",
-};
-
 export function Capabilities() {
-  const [tab, setTab] = useState<(typeof DISCIPLINES)[number]>("Brand");
-  const items = SERVICES.filter((s) => s.group === tab);
+  const block = useSiteBlock<{ section: { index: string; eyebrow: string; title: string; accent: string; intro: string }; disciplines: string[]; blurbs: Record<string, string>; services: { title: string; description: string; group: string }[] }>("site.capabilities");
+  const [tab, setTab] = useState(block.disciplines[0] ?? "");
+  const items = block.services.filter((service) => service.group === tab);
 
   return (
     <Section id="services">
       <SectionHead
-        index="04"
-        eyebrow="Capabilities"
-        title="What we"
-        accent="do."
-        intro="Twelve capabilities across three disciplines — handled together so identity, content and paid distribution never drift apart."
+        index={block.section.index}
+        eyebrow={block.section.eyebrow}
+        title={block.section.title}
+        accent={block.section.accent}
+        intro={block.section.intro}
       />
 
       <div
         role="tablist"
-        aria-label="Capability disciplines"
+        aria-label={block.section.eyebrow}
         className="mt-12 flex flex-wrap gap-2"
       >
-        {DISCIPLINES.map((d, i) => (
+        {block.disciplines.map((d, i) => (
           <button
             key={d}
             type="button"
@@ -48,7 +43,7 @@ export function Capabilities() {
         ))}
       </div>
 
-      <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground">{BLURB[tab]}</p>
+      <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground">{block.blurbs[tab]}</p>
 
       <ul
         key={tab}

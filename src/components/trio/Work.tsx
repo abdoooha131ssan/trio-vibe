@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { PROJECTS, WORK_CATEGORIES, type Project } from "@/data/site";
+import { useSiteBlock } from "@/lib/site-content";
 import { Media } from "./Media";
 import { Section, SectionHead } from "./Primitives";
 import { cn } from "@/lib/utils";
@@ -12,6 +12,14 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
+type Project = {
+  slug: string; title: string; category: string; discipline: string; image: string; alt: string;
+  span: "wide" | "tall" | "regular"; summary: string;
+  caseStudy?: { challenge: string; strategy: string; execution: string; result: string; metrics?: { value: string; label: string }[] };
+};
+type WorkBlock = { section: { index: string; eyebrow: string; title: string; accent: string; intro: string }; categories: string[]; projects: Project[] };
+type WorkLabels = { filterWork: string; readCaseStudy: string; challenge: string; strategy: string; execution: string; result: string };
+
 const spanClass: Record<Project["span"], string> = {
   wide: "sm:col-span-2",
   tall: "",
@@ -19,26 +27,28 @@ const spanClass: Record<Project["span"], string> = {
 };
 
 export function Work() {
-  const [filter, setFilter] = useState<(typeof WORK_CATEGORIES)[number]>("All");
+  const block = useSiteBlock<WorkBlock>("site.work");
+  const labels = useSiteBlock<{ labels: WorkLabels }>("site.brand").labels;
+  const [filter, setFilter] = useState("All");
   const [active, setActive] = useState<Project | null>(null);
 
   const items = useMemo(
-    () => (filter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === filter)),
-    [filter],
+    () => (filter === "All" ? block.projects : block.projects.filter((p) => p.category === filter)),
+    [block.projects, filter],
   );
 
   return (
     <Section id="work">
       <SectionHead
-        index="02"
-        eyebrow="Selected work"
-        title="The"
-        accent="portfolio."
-        intro="Identity systems, feed design, performance creative and video — produced by Trio Vibe."
+        index={block.section.index}
+        eyebrow={block.section.eyebrow}
+        title={block.section.title}
+        accent={block.section.accent}
+        intro={block.section.intro}
       />
 
-      <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label="Filter work by category">
-        {WORK_CATEGORIES.map((c) => (
+      <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label={labels.filterWork}>
+        {block.categories.map((c) => (
           <button
             key={c}
             type="button"
@@ -77,7 +87,7 @@ export function Work() {
                   "flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-card text-left transition-colors duration-300 hover:border-orange/60",
                   clickable && "cursor-pointer",
                 )}
-                aria-label={clickable ? `Read the ${p.title} case study` : undefined}
+                aria-label={clickable ? `${labels.readCaseStudy}: ${p.title}` : undefined}
               >
                 <div className="relative overflow-hidden">
                   <Media
@@ -98,7 +108,7 @@ export function Work() {
                   <h3 className="mt-3 text-2xl text-foreground">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.summary}</p>
                   <div className="mt-5 flex items-center justify-between border-t border-border pt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                    <span>{clickable ? "Read case study" : p.discipline}</span>
+                    <span>{clickable ? labels.readCaseStudy : p.discipline}</span>
                     {clickable ? (
                       <ArrowUpRight
                         className="size-4 text-orange transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -153,10 +163,10 @@ export function Work() {
                 <div className="mt-8 space-y-6">
                   {(
                     [
-                      ["Challenge", active.caseStudy?.challenge],
-                      ["Strategy", active.caseStudy?.strategy],
-                      ["Execution", active.caseStudy?.execution],
-                      ["Result", active.caseStudy?.result],
+                      [labels.challenge, active.caseStudy?.challenge],
+                      [labels.strategy, active.caseStudy?.strategy],
+                      [labels.execution, active.caseStudy?.execution],
+                      [labels.result, active.caseStudy?.result],
                     ] as const
                   ).map(([k, v]) =>
                     v ? (
